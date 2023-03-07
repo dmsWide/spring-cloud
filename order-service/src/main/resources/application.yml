@@ -1,0 +1,36 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: zhangweikuo1997+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    #服务名称
+    name: orderservice
+eureka:
+  client:
+    service-url:
+      #eureka的地址信息，因为eureka也是一个微服务，所以在项目启动的时候eureka也会把自己注册到eureka上去
+      defaultZone: http://localhost:10086/eureka
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+userservice:
+  ribbon:
+    #负载均衡规则
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#配置Ribbon的饥饿加载模式不使用默认的懒加载模式
+ribbon:
+  eager-load:
+    enabled: true
+    #指定饥饿加载的服务名称也就是饥饿加载被消费的服务这里order消费user所以指定user被饥饿加载 clients是一个集合List<String>
+    clients:
+      - userservice
