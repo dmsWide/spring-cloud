@@ -9,11 +9,22 @@ spring:
   application:
     #服务名称
     name: orderservice
-eureka:
-  client:
-    service-url:
-      #eureka的地址信息，因为eureka也是一个微服务，所以在项目启动的时候eureka也会把自己注册到eureka上去
-      defaultZone: http://localhost:10086/eureka
+  #nacos的配置属于spring
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      #orderservice会优先或者默认到Hangzhou集群去消费服务
+      discovery:
+        cluster-name: Hangzhou
+        #值为true表示临时实例，值为false值为非临时实例
+        ephemeral: false
+        #dev环境的namespace
+        #namespace: dff14894-9bcf-46f9-a2ec-b8253864ffea
+#eureka:
+#  client:
+#    service-url:
+#      #eureka的地址信息，因为eureka也是一个微服务，所以在项目启动的时候eureka也会把自己注册到eureka上去
+#      defaultZone: http://localhost:10086/eureka
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -26,7 +37,11 @@ logging:
 userservice:
   ribbon:
     #负载均衡规则
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
+#userservice:
+#  ribbon:
+#    #负载均衡规则
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 #配置Ribbon的饥饿加载模式不使用默认的懒加载模式
 ribbon:
   eager-load:

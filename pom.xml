@@ -44,7 +44,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--nacos的管理依赖-->
+            <!--nacos管理依赖 在github上-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>

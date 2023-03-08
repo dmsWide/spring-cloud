@@ -6,14 +6,21 @@ spring:
     username: root
     password: zhangweikuo1997+
     driver-class-name: com.mysql.cj.jdbc.Driver
-  application:
+  #application:
     #userf微服务的名称 不叫eureka server了
-    name: userservice
-eureka:
-  client:
-    service-url:
-      #eureka的地址信息，因为eureka也是一个微服务，所以在项目启动的时候eureka也会把自己注册到eureka上去
-      defaultZone: http://localhost:10086/eureka
+    #name: userservice
+  #nacos的配置属于spring
+  #cloud:
+    #nacos:
+      #server-addr: localhost:8848
+      #discovery:
+        #自定义集群名称
+        #cluster-name: Hangzhou
+#eureka:
+#  client:
+#    service-url:
+#      #eureka的地址信息，因为eureka也是一个微服务，所以在项目启动的时候eureka也会把自己注册到eureka上去
+#      defaultZone: http://localhost:10086/eureka
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
