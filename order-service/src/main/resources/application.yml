@@ -12,12 +12,13 @@ spring:
   #nacos的配置属于spring
   cloud:
     nacos:
-      server-addr: localhost:8848
+      #server-addr: localhost:8848
+      server-addr: localhost:80
       #orderservice会优先或者默认到Hangzhou集群去消费服务
       discovery:
         cluster-name: Hangzhou
         #值为true表示临时实例，值为false值为非临时实例
-        ephemeral: false
+        #ephemeral: false
         #dev环境的namespace
         #namespace: dff14894-9bcf-46f9-a2ec-b8253864ffea
 #eureka:
